@@ -3392,8 +3392,15 @@ traversonAngular.factory('$httpTraversonAdapter', [
     }
 
     function mapResponse(response) {
-      response.body = response.data;
+      var data = response.data;
+      if (typeof data === 'object') {
+        response.body = JSON.stringify(response.data);
+      } else {
+        response.body = data;
+      }
+
       response.statusCode = response.status;
+      response.headers = response.headers();
       return response;
     }
 

@@ -3361,7 +3361,7 @@ traversonAngular.factory('$httpTraversonAdapter', [
     }
 
     function mapHeaders(newOptions, options) {
-      newOptions.headers || (newOptions.headers = {});
+      newOptions.headers = options.headers || {};
     }
 
     function mapAuth(newOptions, options) {
@@ -3369,7 +3369,6 @@ traversonAngular.factory('$httpTraversonAdapter', [
       if (auth) {
         var username = auth.user || auth.username;
         var password = auth.pass || auth.password;
-        newOptions.headers || (newOptions.headers = {});
         newOptions.headers.Authorization = 'Basic ' + username + ':' + password;
       }
     }
